@@ -205,31 +205,31 @@ namespace HostGame
         {
 #pragma warning disable CS0618 // Тип или член устарел
 
-            if (type == typeof(ActivationTrack))
-                obj = EditorGUI.ObjectField(pos, new GUIContent($"({num}) Activation Track"), obj, typeof(GameObject));
-            else
-            if (type == typeof(AudioTrack))
-                obj = EditorGUI.ObjectField(pos, new GUIContent($"({num}) Audio Track"), obj, typeof(AudioSource));
-            else
-            if (type == typeof(AnimationTrack))
-                obj = EditorGUI.ObjectField(pos, new GUIContent($"({num}) Animation Track"), obj, typeof(Animator));
-            else
-                // These are from Standard Timelines pack from unity
-          /*  if (type == typeof(LightControlTrack))
-                obj = EditorGUI.ObjectField(pos, new GUIContent($"({num}) Light Control Track"), obj, typeof(LightControlTrack));
-            else
-            if (type == typeof(TransformTweenTrack))
-                obj = EditorGUI.ObjectField(pos, new GUIContent($"({num}) Transform Tween Track"), obj, typeof(Transform));
-            else
-            if (type == typeof(TimeControllerTrack) || type == typeof(TimeDilationTrack))
-                EditorGUILayout.LabelField($"({num}) Time Control Track");
-            else
-            if (type == typeof(ScreenFaderTrack))
-                obj = EditorGUI.ObjectField(pos, new GUIContent($"({num}) Screen Fader Track"), obj, typeof(UnityEngine.UI.Image));
-            else*/
-                EditorGUI.LabelField(pos, $"({num}) Track type is not supported! ({type.Name})");
+            Type trackBindingType = GetTrackType(type);
 
+            if (trackBindingType == null)
+            {
+                EditorGUI.LabelField(pos, $"({num}) Track type is not supported! ({type.Name})");
+            }
+            else
+            {
+                obj = EditorGUI.ObjectField(pos, new GUIContent($"({num}) Activation Track"), obj, trackBindingType);
+            }
 #pragma warning restore CS0618 // Тип или член устарел
+        }
+
+        private Type GetTrackType(Type trackType)
+        {
+            var attributes = trackType.GetCustomAttributes(false);
+            foreach (var attribute in attributes)
+            {
+                if (attribute is TrackBindingTypeAttribute trackAtr)
+                {
+                    return trackAtr.type;
+                }
+            }
+
+            return null;
         }
     }
 }
