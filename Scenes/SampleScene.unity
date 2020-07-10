@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -309,12 +310,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bc399b767724246a5f451e4b1f3d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  director: {fileID: 0}
+  director: {fileID: 963194230}
   timeline:
     oldtimeline: {fileID: 11400000, guid: 2c4cd07a87939df479d29cdbaa0b727f, type: 2}
     Overrides: 010101
     timelineAsset: {fileID: 11400000, guid: 2c4cd07a87939df479d29cdbaa0b727f, type: 2}
     Bindings:
+    - {fileID: 963194225}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 0}
+--- !u!320 &963194230
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 0}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
