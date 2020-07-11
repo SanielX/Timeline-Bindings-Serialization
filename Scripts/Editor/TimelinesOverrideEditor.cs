@@ -213,7 +213,7 @@ namespace HostGame
             }
             else
             {
-                obj = EditorGUI.ObjectField(pos, new GUIContent($"({num}) Activation Track"), obj, trackBindingType);
+                obj = EditorGUI.ObjectField(pos, new GUIContent($"({num}) {type.Name}"), obj, trackBindingType);
             }
 #pragma warning restore CS0618 // Тип или член устарел
         }
